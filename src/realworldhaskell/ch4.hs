@@ -14,3 +14,22 @@ splitLines cs =
             _                    -> []
 
 isLineTerminator c = c == '\r' || c == '\n'
+
+
+-- 1
+safeHead :: [a] -> Maybe a
+safeTail :: [a] -> Maybe [a]
+safeLast :: [a] -> Maybe a
+safeInit :: [a] -> Maybe [a]
+
+safeList :: ([a] -> b) -> [a] -> Maybe b
+safeList fn [] = Nothing
+safeList fn xs = Just (fn xs)
+
+safeHead = safeList head
+safeTail = safeList tail
+safeLast = safeList last
+safeInit = safeList init
+
+-- 2
+splitWith :: (a -> Bool) -> [a] -> [[a]]
