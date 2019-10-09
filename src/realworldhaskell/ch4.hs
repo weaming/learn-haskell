@@ -3,6 +3,7 @@ module Ch4
     )
 where
 import           Data.Char
+import Data.List (foldl')
 
 splitLines :: String -> [String]
 splitLines [] = []
@@ -40,6 +41,9 @@ safeInit = safeList init
 
 -- Exercies
 -- 1
--- asInt_fold :: String -> Int
--- asInt_fold cs = map (+) (foldr nJoin (map digitToInt cs))
---     where nJoin :: [Int] -> [Int]
+asInt_fold :: String -> Int
+asInt_fold xs =  (foldl' step 0 (map digitToInt xxs)) * carry
+                    where step acc x = acc * 10 + x
+                          (carry, xxs)  = case xs of
+                                    ('-': xxs) -> (-1, xxs)
+                                    otherwise -> (1, xs)
