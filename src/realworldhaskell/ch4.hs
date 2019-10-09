@@ -2,6 +2,7 @@ module Ch4
     ( splitLines
     )
 where
+import           Data.Char
 
 splitLines :: String -> [String]
 splitLines [] = []
@@ -32,4 +33,13 @@ safeLast = safeList last
 safeInit = safeList init
 
 -- 2
-splitWith :: (a -> Bool) -> [a] -> [[a]]
+-- splitWith :: (a -> Bool) -> [a] -> [[a]]
+
+-- 3
+
+
+-- Exercies
+-- 1
+-- asInt_fold :: String -> Int
+-- asInt_fold cs = map (+) (foldr nJoin (map digitToInt cs))
+--     where nJoin :: [Int] -> [Int]
