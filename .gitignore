@@ -3,3 +3,6 @@ learn-haskell.cabal
 *~
 *.o
 *.hi
+
+*.DS_Store
+dist/

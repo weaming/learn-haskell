@@ -1,0 +1,13 @@
+name: pretty-json
+version: 0.1
+synopsis: My pretty printing library, with JSON support.
+author: weaming
+maintainer: garden.yuen@gmail.com
+cabal-version: >= 1.2
+build-type: Simple
+
+library
+  exposed-modules: Prettify
+                   PrettyJSON
+                   SimpleJSON
+  build-depends:   base >= 2.0
