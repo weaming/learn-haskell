@@ -12,7 +12,7 @@ stringEq :: [Char] -> [Char] -> Bool
 -- Match if both are empty
 stringEq []       []       = True
 -- If both start with the same char, check the rest
-stringEq (x : xs) (y : ys) = x == y && stringEq xs ys
+stringEq (x : xs) (y : ys) = x Prelude.== y && stringEq xs ys
 -- Everything else doesn't match
 stringEq _        _        = False
 
@@ -40,8 +40,8 @@ class BTEq a where
     (==), (/=) :: a -> a -> Bool
     -- Minimal complete definition:
     -- (==) or (/=)
-    x /= y = not (x == y)
-    x == y = not (x /= y)
+    x /= y = not (x Ch6.== y)
+    x == y = not (x Ch6./= y)
 
 instance BasicEq3 Color where
     isEqual3 Red   Red   = True
@@ -51,15 +51,10 @@ instance BasicEq3 Color where
 
 -- Important Built-In Typeclasses
 class BTShow a where
-    show :: a => a -> String
-
-instance Show Color where
-    show Red   = "Red"
-    show Green = "Green"
-    show Blue  = "Blue"
+    show :: a -> String
 
 class BTRead a where
-    read :: (Read a) => String -> a
+    read :: String -> a
 
 -- how to give a type a new identity
 data DataInt = D Int
