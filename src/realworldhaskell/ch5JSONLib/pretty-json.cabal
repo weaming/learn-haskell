@@ -10,4 +10,5 @@ library
   exposed-modules: Prettify
                    PrettyJSON
                    SimpleJSON
+                   JSONClass
   build-depends:   base >= 2.0

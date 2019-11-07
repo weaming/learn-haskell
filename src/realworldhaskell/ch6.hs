@@ -1,6 +1,7 @@
 module Ch6 where
 
 data Color = Red | Green | Blue
+     deriving (Read, Show, Eq, Ord) -- automatic derivation
 colorEq :: Color -> Color -> Bool
 colorEq Red   Red   = True
 colorEq Green Green = True
@@ -34,7 +35,8 @@ class BasicEq3 a where
     isNotEqual3 :: a -> a -> Bool
     isNotEqual3 x y = not (isEqual3 x y)
 
-class Eq a where
+-- the built-in Eq typeclass
+class BTEq a where
     (==), (/=) :: a -> a -> Bool
     -- Minimal complete definition:
     -- (==) or (/=)
@@ -46,3 +48,46 @@ instance BasicEq3 Color where
     isEqual3 Green Green = True
     isEqual3 Blue  Blue  = True
     isEqual3 _     _     = False
+
+-- Important Built-In Typeclasses
+class BTShow a where
+    show :: a => a -> String
+
+instance Show Color where
+    show Red   = "Red"
+    show Green = "Green"
+    show Blue  = "Blue"
+
+class BTRead a where
+    read :: (Read a) => String -> a
+
+-- how to give a type a new identity
+data DataInt = D Int
+    deriving (Eq, Ord, Show)
+
+newtype NewtypeInt = N Int
+    deriving (Eq, Ord, Show)
+
+-- ok: any number of fields and constructors
+data TwoFields = TwoFields Int Int
+
+-- ok: exactly one field
+newtype Okay = ExactlyOne Int
+
+-- ok: type parameters are no problem
+newtype Param a b = Param (Either a b)
+
+-- ok: record syntax is fine
+newtype Record = Record {
+      getInt :: Int
+    }
+
+-- bad: no fields
+-- newtype TooFew = TooFew
+
+-- bad: more than one field
+-- newtype TooManyFields = Fields Int Int
+
+-- bad: more than one constructor
+-- newtype TooManyCtors = Bad Int
+--                      | Worse Int
